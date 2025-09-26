@@ -1,11 +1,18 @@
 import React from 'react';
 import { useGameState } from '../context/GameStateContext';
 
+
+const itemEmojis = {
+  Asin: '🧂',
+  Bawang: '🧄',
+  Agimat: '📿',
+};
+
+
 const PlayerStats = () => {
   const { gameState } = useGameState();
   const hpPercentage = (gameState.hp / 100) * 100;
 
-  // This function determines the color of the HP bar
   const getHpBarColor = () => {
     if (hpPercentage > 60) {
       return '#6bcf6b'; // Green
@@ -13,7 +20,7 @@ const PlayerStats = () => {
     if (hpPercentage > 30) {
       return '#e0ac4c'; // Yellow
     }
-    return '#e06c75'; // Red (our theme color)
+    return '#B80F0A'; // Red
   };
 
   return (
@@ -22,27 +29,35 @@ const PlayerStats = () => {
         <strong>Hunter:</strong> {gameState.playerName}
       </div>
 
-      {/* --- HP BAR STRUCTURE --- */}
       <div className="stat-hp">
         <div className="hp-bar-container">
-          {/* The inner bar's width is set dynamically based on player HP */}
           <div
             className="hp-bar-fill"
-            style={{ 
+            style={{
               width: `${hpPercentage}%`,
-              backgroundColor: getHpBarColor() 
+              backgroundColor: getHpBarColor(),
             }}
           ></div>
-          {/* The text sits on top of the bar */}
           <div className="hp-bar-text">
             HP: {gameState.hp} / 100
           </div>
         </div>
       </div>
-      {/* --- END HP BAR --- */}
 
       <div className="stat">
-        <strong>Inventory:</strong> {gameState.inventory.length > 0 ? gameState.inventory.join(', ') : 'None'}
+        <strong>Inventory:</strong>{' '}
+        {/* --- Inventory display logic --- */}
+        {gameState.inventory.length > 0
+          ? gameState.inventory
+              .map((item) => {
+
+                const emoji = itemEmojis[item] || ''; 
+
+                return `${emoji} ${item}`.trim();
+              })
+              .join(', ')
+          : 'None'}
+        {/* Display items with emojis */}
       </div>
     </div>
   );
