@@ -88,3 +88,46 @@ input[type="text"] {
   font-family: 'Press Start 2P', monospace;
   border-radius: 0;
 }
+
+.stat-hp {
+  flex-grow: 1; /* Allows it to take up available space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* The outer container of the bar (the "empty" part) */
+.hp-bar-container {
+  width: 90%;
+  max-width: 300px;
+  height: 25px;
+  border: 2px solid #1a1a1a;
+  background-color: #444;
+  position: relative; /* Crucial for positioning the text inside */
+}
+
+/* The actual colored bar that shows current health */
+.hp-bar-fill {
+  height: 100%;
+  /* The width is controlled by the inline style in the React component */
+  transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out; /* Smooth animation */
+}
+
+/* The text that displays "HP: 100 / 100" */
+.hp-bar-text {
+  position: absolute; /* Lays the text on top of the bar */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  /* This centers the text perfectly inside the container */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 0.8rem;
+  color: white;
+  /* Adds a subtle black shadow to make text readable on any color bar */
+  text-shadow: 1px 1px 2px #000;
+}
