@@ -5,6 +5,7 @@ import storyData from '../data/story.json';
 const GameStateContext = createContext();
 
 // Custom hook to easily consume the context
+// eslint-disable-next-line react-refresh/only-export-components
 export const useGameState = () => useContext(GameStateContext);
 
 // The initial state of the game
@@ -16,7 +17,7 @@ const initialState = {
   gameStarted: false,
 };
 
-export const GameStateProvider = ({ children }) => {
+const GameStateProvider = ({ children }) => {
   const [gameState, setGameState] = useLocalStorage('aswangHunterState', initialState);
 
   // Function to start a new game
@@ -95,3 +96,5 @@ export const GameStateProvider = ({ children }) => {
     </GameStateContext.Provider>
   );
 };
+
+export default GameStateProvider;
