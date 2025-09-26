@@ -1,16 +1,28 @@
 /* Import the pixel font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-/* Set up global styles for our retro theme */
 body {
+  /* The first one (the gradient) sits on top of the second one (the image). */
+  background:
+    /* 1. The Vignette Gradient (top layer) */
+    radial-gradient(ellipse at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%),
+    
+    /* 2. The Background Image (bottom layer) */
+    url('/spooky-forest.jpg');
+
+  /* --- Image Control Properties --- */
+  background-size: cover;          /* Ensures the image covers the whole screen */
+  background-position: center;     /* Centers the image */
+  background-attachment: fixed;    /* The image stays in place when you scroll */
+  background-repeat: no-repeat;    /* Prevents the image from tiling */
+
+  /* --- General Body Styles (mostly the same as before) --- */
   margin: 0;
-  background-color: #1a1a1a; /* A darker background */
-  font-family: 'Press Start 2P', 'Courier New', monospace; /* Use our new font! */
+  min-height: 100vh; /* Ensures the body is at least the height of the screen */
+  font-family: 'Press Start 2P', 'Courier New', monospace;
   
-  /* --- IMPORTANT: This makes pixel fonts look sharp --- */
+  /* --- Keep these for sharp pixel font rendering --- */
   -webkit-font-smoothing: none;
   -moz-osx-font-smoothing: grayscale;
-  image-rendering: -webkit-optimize-contrast; /* for Chrome */
-  image-rendering: crisp-edges; /* for Firefox */
-  image-rendering: pixelated; /* for modern browsers */
+  image-rendering: pixelated;
 }
